@@ -4,8 +4,9 @@ import onnxruntime
 import numpy as np
 from PIL import Image
 import pytorch_model
+from utils.preprocessing import preprocess_numpy
 
-ONNX_FILENAME = "mtailor.onnx"
+ONNX_FILENAME = "models/mtailor.onnx"
 
 # Load the ONNX model
 session = onnxruntime.InferenceSession(ONNX_FILENAME)
@@ -32,11 +33,11 @@ def testing_validity_onnx_model():
 def test_onnx():
     # Load and preprocess the first image
     img1 = Image.open("./n01440764_tench.jpeg")
-    inp1 = mtailor_model.preprocess_numpy(img1).numpy().reshape(1, 3, 224, 224)
+    inp1 = preprocess_numpy(img1).numpy().reshape(1, 3, 224, 224)
 
     # Load and preprocess the second image
     img2 = Image.open("./n01667114_mud_turtle.JPEG")
-    inp2 = mtailor_model.preprocess_numpy(img2).numpy().reshape(1, 3, 224, 224)
+    inp2 = preprocess_numpy(img2).numpy().reshape(1, 3, 224, 224)
 
     # Run the first image through the model
     out1 = session.run(None, {"input": inp1})[0]
