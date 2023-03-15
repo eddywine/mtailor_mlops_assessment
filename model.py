@@ -8,7 +8,7 @@ class OnnxModel:
     def __init__(self, model_path):
         self.session = onnxruntime.InferenceSession(model_path)
     
-    def predict(self, input_data):
+    def inference(self, input_data):
         input_data = preprocess_numpy(input_data).numpy().reshape(1, 3, 224, 224)
         output = self.session.run([], {self.session.get_inputs()[0].name: input_data})
 
@@ -19,5 +19,5 @@ model = OnnxModel("models/mtailor.onnx")
 img1 = Image.open('./n01667114_mud_turtle.jpeg')
 
 
-output = model.predict(img1)
+output = model.inference(img1)
 print(np.argmax(output))

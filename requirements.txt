@@ -2,3 +2,5 @@ onnx
 torchvision
 onnxruntime
 torch
+Pillow==9.4.0
+sanic==22.6.2
