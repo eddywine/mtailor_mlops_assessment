@@ -25,7 +25,7 @@ def converting_pytorch_model_to_onnx(model, model_weights: str, onnx_filename: s
     model_weights_file = io.BytesIO(urllib.request.urlopen(model_weights).read())
     model.load_state_dict(torch.load(model_weights_file))
     dummy_input = torch.randn(1, *input_shape)
-    torch.onnx.export(model, dummy_input, './models/'+onnx_filename, export_params=True, opset_version=12, input_names=["input"], output_names=["output"])
+    torch.onnx.export(model, dummy_input, './models/'+onnx_filename, export_params=True, opset_version=12, do_constant_folding=True, input_names=["input"], output_names=["output"])
     return
 
 

@@ -21,3 +21,4 @@ img1 = Image.open('./n01667114_mud_turtle.jpeg')
 
 
 output = model.inference(img1)
+print(output)
