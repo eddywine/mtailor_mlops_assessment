@@ -9,6 +9,7 @@ from io import BytesIO
 API_KEY = "22e1e370-5176-45ec-9562-24153f922bc8"
 MODEL_KEY = "74355983-a06a-4bdc-92dd-684cd31c8a78"
 
+# testing the time taken to run each API call for the models
 def test_time_per_api_call():
 
     with open("./n01440764_tench.jpeg", "rb") as f:
@@ -24,6 +25,7 @@ def test_time_per_api_call():
     time_taken = end_time - start_time
     print('Time taken:', time_taken , 'seconds')
     return time_taken
+# performing inference on a new image
 def test_new_image(image_path):
 
     with open(image_path, "rb") as f:
@@ -38,6 +40,7 @@ def test_new_image(image_path):
     out = banana.run(API_KEY, MODEL_KEY, model_inputs)
     return out['class_id']
 
+# performing inference on the given images
 def baseline_test():
     test_images = ['./n01440764_tench.jpeg', './n01667114_mud_turtle.JPEG']
     expected_class_ids = [0, 35]
