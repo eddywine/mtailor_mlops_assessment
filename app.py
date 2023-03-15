@@ -1,4 +1,4 @@
-from .model import OnnxModel
+from model import OnnxModel
 
 
 def init(model_name : str = "./models/mtailor.onnx"):
