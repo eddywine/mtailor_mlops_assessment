@@ -11,6 +11,7 @@ class OnnxModel:
     def inference(self, input_data):
         input_data = preprocess_numpy(input_data).numpy().reshape(1, 3, 224, 224)
         output = self.session.run([], {self.session.get_inputs()[0].name: input_data})
+        output = np.argmax(output)
 
         return output
 
@@ -20,4 +21,3 @@ img1 = Image.open('./n01667114_mud_turtle.jpeg')
 
 
 output = model.inference(img1)
-print(np.argmax(output))

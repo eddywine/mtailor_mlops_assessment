@@ -5,3 +5,4 @@ torch
 Pillow==9.4.0
 sanic==22.6.2
 pytest
+banana_dev
